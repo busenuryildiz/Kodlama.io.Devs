@@ -10,6 +10,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using Application.Features.ProgrammingLanguages.Rules;
+using Application.Features.SoftwareTechs.Rules;
 
 namespace Application
 {
@@ -29,6 +30,7 @@ namespace Application
 
 
             services.AddScoped<ProgrammingLanguageBusinessRules>();
+            services.AddScoped<SoftwareTechBusinessRules>();
             services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
             //services.AddTransient(typeof(IPipelineBehavior<,>), typeof(AuthorizationBehavior<,>));
             //services.AddTransient(typeof(IPipelineBehavior<,>), typeof(CachingBehavior<,>));
