@@ -11,6 +11,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Application.Features.ProgrammingLanguages.Rules;
 using Application.Features.SoftwareTechs.Rules;
+using Application.Features.Auths.Rules;
+using Application.Services.AuthService;
 
 namespace Application
 {
@@ -28,7 +30,7 @@ namespace Application
                 
             });
 
-
+            services.AddScoped<AuthBusinessRules>();
             services.AddScoped<ProgrammingLanguageBusinessRules>();
             services.AddScoped<SoftwareTechBusinessRules>();
             services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
@@ -37,7 +39,7 @@ namespace Application
             //services.AddTransient(typeof(IPipelineBehavior<,>), typeof(CacheRemovingBehavior<,>));
             //services.AddTransient(typeof(IPipelineBehavior<,>), typeof(LoggingBehavior<,>));
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(RequestValidationBehavior<,>));
-
+            services.AddScoped<IAuthService, AuthManager>();
             return services;
 
         }
