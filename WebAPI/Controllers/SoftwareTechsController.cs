@@ -6,6 +6,7 @@ using Application.Features.SoftwareTechs.Models;
 using Application.Features.SoftwareTechs.Queries.GetByIdSoftwareTech;
 using Application.Features.SoftwareTechs.Queries.GetListSoftwareTech;
 using Core.Application.Requests;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -13,6 +14,8 @@ namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(Roles = "Admin")]
+
     public class SoftwareTechsController : BaseController
     {
         [HttpPost]

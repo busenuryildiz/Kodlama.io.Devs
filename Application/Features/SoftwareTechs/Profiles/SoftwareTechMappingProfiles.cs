@@ -14,9 +14,9 @@ using Application.Features.SoftwareTechs.Commands.DeleteSoftwareTech;
 
 namespace Application.Features.SoftwareTechs.Profiles
 {
-    public class MappingProfiles : Profile
+    public class SoftwareTechMappingProfiles : Profile
     {
-        public MappingProfiles()
+        public SoftwareTechMappingProfiles()
         {
             CreateMap<SoftwareTech, CreatedSoftwareTechDto>().ReverseMap();
             CreateMap<SoftwareTech, UpdatedSoftwareTechDto>().ReverseMap();

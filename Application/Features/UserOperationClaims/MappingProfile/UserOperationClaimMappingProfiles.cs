@@ -15,9 +15,9 @@ using System.Threading.Tasks;
 
 namespace Application.Features.UserOperationClaims.MappingProfile
 {
-    public class MappingProfiles : Profile
+    public class UserOperationClaimMappingProfiles : Profile
     {
-        public MappingProfiles()
+        public UserOperationClaimMappingProfiles()
         {
             CreateMap<UserOperationClaim, CreateUserOperationClaimCommand>().ReverseMap();
             CreateMap<UserOperationClaim, UpdateUserOperationClaimCommand>().ReverseMap();

@@ -2,12 +2,6 @@
 using AutoMapper;
 using Core.Persistence.Paging;
 using Core.Security.Entities;
-using Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Application.Features.OperationClaims.Models;
 using Application.Features.OperaionClaims.Commands.CreateOperationClaims;
 using Application.Features.OperaionClaims.Commands.DeleteOperationClaim;
@@ -15,10 +9,9 @@ using Application.Features.OperaionClaims.Commands.UpdateOperationClaim;
 
 namespace Application.Features.OperationClaims.Profiles
 {
-    public class MappingProfiles : Profile
+    public class OperationClaimMappingProfiles : Profile
     {
-
-        public MappingProfiles()
+        public OperationClaimMappingProfiles()
         {
             CreateMap<OperationClaim, CreatedOperationClaimDto>().ReverseMap();
             CreateMap<OperationClaim, CreateOperationClaimCommand>().ReverseMap();

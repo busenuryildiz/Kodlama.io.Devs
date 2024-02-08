@@ -14,9 +14,9 @@ using Domain.Entities;
 
 namespace Application.Features.ProgrammingLanguages.Profiles
 {
-    public class MappingProfiles : Profile
+    public class ProgrammingLanguageMappingProfiles : Profile
     {
-        public MappingProfiles()
+        public ProgrammingLanguageMappingProfiles()
         {
             CreateMap<ProgrammingLanguage, CreatedProgrammingLanguageDto>().ReverseMap();
             CreateMap<ProgrammingLanguage, UpdatedProgrammingLanguageDto>().ReverseMap();
