@@ -23,6 +23,11 @@ namespace Application.Features.Auths.Rules
             User? user = await _userRepository.GetAsync(x => x.Email == email);
             if (user != null) throw new BusinessException("Email can not be duplicated");
         }
+        public async Task EmailMustBeInDatabaseWhenLogined(string email)
+        {
+            User? user = await _userRepository.GetAsync(u => u.Email == email);
+            if (user == null) throw new BusinessException("User Not Found");
+        }
     }
 }
 

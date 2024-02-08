@@ -1,8 +1,8 @@
-﻿using Application.Features.Auths.Commands.Register;
+﻿using Application.Features.Auths.Commands.Login;
+using Application.Features.Auths.Commands.Register;
 using Application.Features.Auths.Dtos;
 using Core.Security.Dtos;
 using Core.Security.Entities;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebAPI.Controllers
@@ -20,10 +20,10 @@ namespace WebAPI.Controllers
                 IpAddress = GetIpAddress()
             };
             RegisteredDto result = await Mediator.Send(registerCommand);
-            setRefreshTokenCookie(result.RefreshToken);
+            SetRefreshTokenToCookie(result.RefreshToken);
             return Created("", result.AccessToken);
         }
-        private void setRefreshTokenCookie(RefreshToken refreshToken)
+        private void SetRefreshTokenToCookie(RefreshToken refreshToken)
         {
             CookieOptions cookieOptions = new()
             {
@@ -31,6 +31,19 @@ namespace WebAPI.Controllers
                 Expires = DateTime.Now.AddDays(7)
             };
             Response.Cookies.Append("refreshToken", refreshToken.Token, cookieOptions);
+        }
+
+        [HttpPost("[action]")]
+        public async Task<IActionResult> Login([FromBody] UserForLoginDto userForLoginDto)
+        {
+            LoginCommand loginCommand = new()
+            {
+                UserForLoginDto = userForLoginDto,
+                IpAddress = GetIpAddress()
+            };
+            LoginedDto result = await Mediator.Send(loginCommand);
+            SetRefreshTokenToCookie(result.RefreshToken);
+            return Created("", result.AccessToken);
         }
     }
 }
