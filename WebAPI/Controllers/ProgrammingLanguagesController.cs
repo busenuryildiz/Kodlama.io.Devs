@@ -13,27 +13,26 @@ namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize(Roles ="Admin")]
     public class ProgrammingLanguagesController : BaseController
     {
         [HttpPost]
         public async Task<IActionResult> Add([FromBody] CreateProgrammingLanguageCommand createProgrammingLanguageCommand)
         {
-            CreatedProgrammingLanguageDto result = await Mediator.Send(createProgrammingLanguageCommand);
+            CreatedProgrammingLanguageDto result = await Mediator!.Send(createProgrammingLanguageCommand);
             return Created("", result);
         }
 
         [HttpPut]
         public async Task<IActionResult> Update([FromBody] UpdateProgrammingLanguageCommand updateProgrammingLanguageCommand)
         {
-            UpdatedProgrammingLanguageDto result = await Mediator.Send(updateProgrammingLanguageCommand);
+            UpdatedProgrammingLanguageDto result = await Mediator!.Send(updateProgrammingLanguageCommand);
             return Ok(result);
         }
 
         [HttpDelete]
         public async Task<IActionResult> Delete([FromBody] DeleteProgrammingLanguageCommand deleteProgrammingLanguageCommand)
         {
-            DeletedProgrammingLanguageDto result = await Mediator.Send(deleteProgrammingLanguageCommand);
+            DeletedProgrammingLanguageDto result = await Mediator!.Send(deleteProgrammingLanguageCommand);
             return Ok(result);
         }
 
@@ -41,14 +40,14 @@ namespace WebAPI.Controllers
         public async Task<IActionResult> GetList([FromQuery] PageRequest pageRequest)
         {
             GetListProgrammingLanguageQuery getListProgrammingLanguageQuery = new() { PageRequest = pageRequest };
-            ProgrammingLanguageListModel result = await Mediator.Send(getListProgrammingLanguageQuery);
+            ProgrammingLanguageListModel result = await Mediator!.Send(getListProgrammingLanguageQuery);
             return Ok(result);
         }
 
         [HttpGet("{Id}")]
         public async Task<IActionResult> GetById([FromRoute] GetByIdProgrammingLanguageQuery getByIdProgrammingLanguageQuery)
         {
-            ProgrammingLanguageGetByIdDto programmingLanguageGetByIdDto = await Mediator.Send(getByIdProgrammingLanguageQuery);
+            ProgrammingLanguageGetByIdDto programmingLanguageGetByIdDto = await Mediator!.Send(getByIdProgrammingLanguageQuery);
             return Ok(programmingLanguageGetByIdDto);
         }
 

@@ -35,6 +35,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
 });
 builder.Services.AddSwaggerGen(opt =>
 {
+    opt.SwaggerDoc("v1", new() { Title = "Kodlama.io.Devs.Api", Version = "v1" });
     opt.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
     {
         Name = "Authorization",
@@ -68,10 +69,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-if (app.Environment.IsProduction())
-{
-    app.ConfigureCustomExceptionMiddleware();
-}
+app.ConfigureCustomExceptionMiddleware();
+
 
 app.UseHttpsRedirection();
 app.UseAuthentication();

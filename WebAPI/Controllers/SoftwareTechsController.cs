@@ -14,28 +14,27 @@ namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize(Roles = "Admin")]
 
     public class SoftwareTechsController : BaseController
     {
         [HttpPost]
         public async Task<IActionResult> Add([FromBody] CreateSoftwareTechCommand createSoftwareTechCommand)
         {
-            CreatedSoftwareTechDto result = await Mediator.Send(createSoftwareTechCommand);
+            CreatedSoftwareTechDto result = await Mediator!.Send(createSoftwareTechCommand);
             return Created("", result);
         }
 
         [HttpPut]
         public async Task<IActionResult> Update([FromBody] UpdateSoftwareTechCommand updateSoftwareTechCommand)
         {
-            UpdatedSoftwareTechDto result = await Mediator.Send(updateSoftwareTechCommand);
+            UpdatedSoftwareTechDto result = await Mediator!.Send(updateSoftwareTechCommand);
             return Ok(result);
         }
 
         [HttpDelete]
         public async Task<IActionResult> Delete([FromBody] DeleteSoftwareTechCommand deleteSoftwareTechCommand)
         {
-            DeletedSoftwareTechDto result = await Mediator.Send(deleteSoftwareTechCommand);
+            DeletedSoftwareTechDto result = await Mediator!.Send(deleteSoftwareTechCommand);
             return Ok(result);
         }
 
@@ -43,14 +42,14 @@ namespace WebAPI.Controllers
         public async Task<IActionResult> GetList([FromQuery] PageRequest pageRequest)
         {
             GetListSoftwareTechQuery getListSoftwareTechQuery = new() { PageRequest = pageRequest };
-            SoftwareTechListModel result = await Mediator.Send(getListSoftwareTechQuery);
+            SoftwareTechListModel result = await Mediator!.Send(getListSoftwareTechQuery);
             return Ok(result);
         }
 
         [HttpGet("{Id}")]
         public async Task<IActionResult> GetById([FromRoute] GetByIdSoftwareTechQuery getByIdSoftwareTechQuery)
         {
-            SoftwareTechGetByIdDto softwareTechGetByIdDto = await Mediator.Send(getByIdSoftwareTechQuery);
+            SoftwareTechGetByIdDto softwareTechGetByIdDto = await Mediator!.Send(getByIdSoftwareTechQuery);
             return Ok(softwareTechGetByIdDto);
         }
     }

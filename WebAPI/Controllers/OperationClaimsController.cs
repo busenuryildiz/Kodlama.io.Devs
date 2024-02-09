@@ -17,7 +17,7 @@ namespace WebAPI.Controllers
         [HttpPost("[action]")]
         public async Task<IActionResult> Add([FromBody] CreateOperationClaimCommand createOperationClaimCommand)
         {
-            CreatedOperationClaimDto createdOperationClaimDto = await Mediator.Send(createOperationClaimCommand);
+            CreatedOperationClaimDto createdOperationClaimDto = await Mediator!.Send(createOperationClaimCommand);
             return Created("", createdOperationClaimDto);
         }
 
@@ -25,13 +25,13 @@ namespace WebAPI.Controllers
         [HttpPut("[action]")]
         public async Task<IActionResult> Update([FromBody] UpdateOperationClaimCommand updateOperationClaimCommand)
         {
-            UpdatedOperationClaimDto updatedOperationClaimDto = await Mediator.Send(updateOperationClaimCommand);
+            UpdatedOperationClaimDto updatedOperationClaimDto = await Mediator!.Send(updateOperationClaimCommand);
             return Created("", updatedOperationClaimDto);
         }
         [HttpDelete("[action]")]
         public async Task<IActionResult> Delete([FromBody] DeleteOperationClaimCommand deleteOperationClaimCommand)
         {
-            DeletedOperationClaimDto deletedOperationClaimDto = await Mediator.Send(deleteOperationClaimCommand);
+            DeletedOperationClaimDto deletedOperationClaimDto = await Mediator!.Send(deleteOperationClaimCommand);
             return Created("", deletedOperationClaimDto);
         }
 
@@ -39,7 +39,7 @@ namespace WebAPI.Controllers
         public async Task<IActionResult> GetList([FromQuery] PageRequest pageRequest)
         {
             GetListOperationClaimQuery getListOperationClaimQuery = new() { PageRequest = pageRequest };
-            OperationClaimListModel result = await Mediator.Send(getListOperationClaimQuery);
+            OperationClaimListModel result = await Mediator!.Send(getListOperationClaimQuery);
             return Ok(result);
         }
     }
